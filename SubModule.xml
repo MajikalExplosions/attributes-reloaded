@@ -1,0 +1,34 @@
+﻿<Module>
+  <Name value="AttributesReloaded"/>
+  <Id value="AttributesReloaded"/>
+  <Version value="v1.4.0"/>
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
+  <DependedModules>
+    <DependedModule Id="Native"/>
+    <DependedModule Id="SandBoxCore"/>
+    <DependedModule Id="Sandbox"/>
+    <DependedModule Id="StoryMode" />
+  </DependedModules>
+  <SubModules>
+    <SubModule>
+      <Name value="AttributesReloaded"/>
+      <DLLName value="AttributesReloaded.dll"/>
+      <SubModuleClassType value="AttributesReloaded.SubModule"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+    <SubModule>
+      <Name value="MBOptionScreen" />
+      <DLLName value="MBOptionScreen.v2.0.10.dll" />
+      <SubModuleClassType value="MBOptionScreen.MBOptionScreenSubModuleV2010" />
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+  </SubModules>
+  <Xmls/>
+</Module>
