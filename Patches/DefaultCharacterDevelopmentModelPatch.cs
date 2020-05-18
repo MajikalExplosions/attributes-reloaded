@@ -15,6 +15,10 @@ namespace AttributesReloaded
 		{
 			var bonuses = new CharacterAttributeBonuses(hero.CharacterObject);
 			var bonus = __result * bonuses.XPMultiplier;
+            if (explainer != null)
+            {
+                explainer.AddLine("INT bonus", bonus);
+            }
 			if (hero.CharacterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 			{
 				InformationManager.DisplayMessage(new InformationMessage("Bonus " + (100 * bonus) + "% XP from INT", Colors.Red));
