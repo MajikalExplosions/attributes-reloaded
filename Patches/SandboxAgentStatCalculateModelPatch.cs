@@ -15,31 +15,24 @@ namespace AttributesReloaded
 		[HarmonyPatch("InitializeAgentStats")]
 		public static void InitializeAgentStats(Agent agent, Equipment spawnEquipment, AgentDrivenProperties agentDrivenProperties, AgentBuildData agentBuildData)
 		{
-			if (agent.IsHuman && agent.IsHero)
+			if (agent.IsHuman)
 			{
 				var characterObject = CharacterObject.Find(agent.Character.StringId);
 				var heroBonuses = new CharacterAttributeBonuses(characterObject);
-				float bonusHP = agent.HealthLimit * heroBonuses.HPMultiplier;
 				if (characterObject.HeroObject == Hero.MainHero && Config.Instance.enable_messages)
 				{
-					InformationManager.DisplayMessage(new InformationMessage("Bonus " + bonusHP + " HP from END", Colors.Red));
-					InformationManager.DisplayMessage(new InformationMessage("Bonus " + (100 * heroBonuses.MoveSpeedMultiplier) + "% movement speed from END", Colors.Red));
+					InformationManager.DisplayMessage(new InformationMessage("Bonus " + heroBonuses.MoveSpeedMultiplier.ToString("P") + " movement speed from END", Colors.Red));
 				}
 
-				var helthRatio = agent.Health / agent.HealthLimit;
-				agent.HealthLimit += bonusHP;
-				agent.Health += bonusHP * helthRatio;
-
-				agentDrivenProperties.CombatMaxSpeedMultiplier *= heroBonuses.MoveSpeedMultiplier + 1;
+               agentDrivenProperties.CombatMaxSpeedMultiplier *= heroBonuses.MoveSpeedMultiplier + 1;
 			}
-			// DefaultCharacterStatsModel;
 		}
 
-		[HarmonyPostfix]
+        [HarmonyPostfix]
 		[HarmonyPatch("UpdateAgentStats")]
 		public static void UpdateAgentStats(Agent agent, AgentDrivenProperties agentDrivenProperties)
 		{
-			if (agent.IsHuman && agent.IsHero)
+			if (agent.IsHuman)
 			{
 				var characterObject = CharacterObject.Find(agent.Character.StringId);
 				var heroBonuses = new CharacterAttributeBonuses(characterObject);

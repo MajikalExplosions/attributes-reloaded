@@ -1,20 +1,22 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System.Collections.Generic;
 using System.Linq;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 
 namespace AttributesReloaded
 {
     [HarmonyPatch(typeof(CharacterObject))]
-    [HarmonyPatch("GetAttributeValue")]
     class CharacterObjectPatch
     {
-        public static int Postfix(int __result, CharacterObject __instance, CharacterAttributesEnum charAttribute)
+        [HarmonyPatch("GetAttributeValue")]
+        [HarmonyPostfix]
+        public static int GetAttributeValue(int __result, CharacterObject __instance, CharacterAttributesEnum charAttribute)
         {
             var attribute = __result;
             // if following is true, then this attribute is already set by developers/other mods
-            if (attribute > 2) return attribute;
+            if (attribute >= 2) return attribute;
             // we use maximum skill level to determine how big attribute should be
             var maxSkill = CharacterAttributes.GetCharacterAttribute(charAttribute).Skills.Select(skill => __instance.GetSkillValue(skill)).Max();
             // 0 - is minimal for any skill and we consider this amount as 2 for repsective attribute
@@ -25,6 +27,30 @@ namespace AttributesReloaded
             return (attribute < 10)
                 ? attribute
                 : 10;
+        }
+
+        [HarmonyPatch("MaxHitPoints")]
+        [HarmonyPostfix]
+        public static int MaxHitPoints(int __result, CharacterObject __instance)
+        {
+            var bonuses = new CharacterAttributeBonuses(__instance);
+            var bonusHP = (int)(__result * bonuses.HPMultiplier);
+            if (__instance.HeroObject == Hero.MainHero && Config.Instance.enable_messages)
+            {
+                InformationManager.DisplayMessage(new InformationMessage("Bonus " + bonusHP + " HP from END", Colors.Red));
+            }
+
+            return __result + bonusHP;
+        }
+
+        [HarmonyPatch("MaxHitpointsExplanation", MethodType.Getter)]
+        [HarmonyPostfix]
+        public static StatExplainer MaxHitpointsExplanation(StatExplainer __result, CharacterObject __instance)
+        {
+            var bonuses = new CharacterAttributeBonuses(__instance);
+            var bonusHP = (int)(__instance.MaxHitPoints() * bonuses.HPMultiplier / (1 + bonuses.HPMultiplier));
+            __result.AddLine("Endurance modifier", bonusHP);
+            return __result;
         }
     }
 }
