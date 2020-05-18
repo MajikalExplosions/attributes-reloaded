@@ -11,15 +11,15 @@ namespace AttributesReloaded
 	[HarmonyPatch("CalculateDamage")]
 	class SandboxAgentApplyDamageModelPatch
 	{
-		public static int Postfix(int __result, ref AttackInformation attackInformation, ref AttackCollisionData collisionData, WeaponComponentData weapon)
+		public static int Postfix(int __result, BasicCharacterObject affectorBasicCharacter, BasicCharacterObject affectedBasicCharacter, MissionWeapon offHandItem, bool isHeadShot, bool isAffectedAgentMount, bool isAffectedAgentHuman, bool hasAffectorAgentMount, bool isAffectedAgentNull, bool isAffectorAgentHuman, AttackCollisionData collisionData, WeaponComponentData weapon)
 		{
-			CharacterObject atacker = attackInformation.AttackerAgentCharacter as CharacterObject;
-			CharacterObject victim = attackInformation.VictimAgentCharacter as CharacterObject;
-			if (attackInformation.IsVictimAgentNull || attackInformation.IsAttackerAgentNull || !attackInformation.IsAttackerAgentHuman || !attackInformation.IsVictimAgentHuman)
+			CharacterObject atacker = affectorBasicCharacter as CharacterObject;
+			CharacterObject victim = affectedBasicCharacter as CharacterObject;
+			if (isAffectedAgentNull || atacker == null || !isAffectorAgentHuman || !isAffectedAgentHuman)
 			{
 				return __result;
 			}
-			if (!collisionData.IsFallDamage && atacker != null && victim != null && atacker.IsHero && !collisionData.IsAlternativeAttack)
+			if (!collisionData.IsFallDamage && atacker != null && victim != null && !collisionData.IsAlternativeAttack)
 			{
 				var bonuses = new CharacterAttributeBonuses(atacker);
 				var isMelee = weapon != null && !weapon.IsRangedWeapon;
