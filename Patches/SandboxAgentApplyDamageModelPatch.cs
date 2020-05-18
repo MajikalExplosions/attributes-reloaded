@@ -19,7 +19,7 @@ namespace AttributesReloaded
 			{
 				return __result;
 			}
-			if (!collisionData.IsFallDamage && atacker != null && victim != null && atacker.IsHero && !collisionData.IsAlternativeAttack)
+			if (!collisionData.IsFallDamage && atacker != null && victim != null && !collisionData.IsAlternativeAttack)
 			{
 				var bonuses = new CharacterAttributeBonuses(atacker);
 				var isMelee = weapon != null && !weapon.IsRangedWeapon;

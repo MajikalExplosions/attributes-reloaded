@@ -18,13 +18,13 @@ namespace AttributesReloaded
 			if (agent.IsHuman)
 			{
 				var characterObject = CharacterObject.Find(agent.Character.StringId);
-				var heroBonuses = new CharacterAttributeBonuses(characterObject);
+				var characterBonuses = new CharacterAttributeBonuses(characterObject);
 				if (characterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 				{
-					InformationManager.DisplayMessage(new InformationMessage("Bonus " + heroBonuses.MoveSpeedMultiplier.ToString("P") + " movement speed from END", Colors.Red));
+					InformationManager.DisplayMessage(new InformationMessage("Bonus " + characterBonuses.MoveSpeedMultiplier.ToString("P") + " movement speed from END", Colors.Red));
 				}
 
-               agentDrivenProperties.CombatMaxSpeedMultiplier *= heroBonuses.MoveSpeedMultiplier + 1;
+               agentDrivenProperties.CombatMaxSpeedMultiplier *= characterBonuses.MoveSpeedMultiplier + 1;
 			}
 		}
 
@@ -35,12 +35,12 @@ namespace AttributesReloaded
 			if (agent.IsHuman)
 			{
 				var characterObject = CharacterObject.Find(agent.Character.StringId);
-				var heroBonuses = new CharacterAttributeBonuses(characterObject);
+				var characterBonuses = new CharacterAttributeBonuses(characterObject);
 				WeaponComponentData weapon;
 				var isRanged = agent.WieldedWeapon.IsAnyRanged(out weapon);
 				float speedMultiplier = isRanged
-					? heroBonuses.RangeSpeedMultiplier
-					: heroBonuses.MeleeSpeedMultiplier;
+					? characterBonuses.RangeSpeedMultiplier
+					: characterBonuses.MeleeSpeedMultiplier;
 				if (characterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 				{
 					InformationManager.DisplayMessage(new InformationMessage("Bonus " + (100 * speedMultiplier) + "% Attack Speed from " + (isRanged ? "CON" : "VIG"), Colors.Red));
