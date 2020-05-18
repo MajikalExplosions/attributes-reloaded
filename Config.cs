@@ -1,4 +1,4 @@
-﻿using MBOptionScreen.Settings;
+using MBOptionScreen.Settings;
 using MBOptionScreen.Attributes;
 using MBOptionScreen.Attributes.v2;
 
@@ -65,5 +65,14 @@ namespace AttributesReloaded
         [SettingPropertyGroup("Additional", order: 6)]
         [SettingPropertyBool(displayName: "Show info messages", HintText = "Enable this to see how much bonuses you get from attributes", RequireRestart = false)]
         public bool enable_messages { get; set; } = false;
+        [SettingPropertyGroup("Additional", order: 6)]
+        [SettingPropertyBool(displayName: "Disable effect on companions", HintText = "Enable this option to get companions work like in vanilla (they'll be weaker than you)", RequireRestart = false)]
+        public bool disable_companions { get; set; } = false;
+        [SettingPropertyGroup("Additional", order: 6)]
+        [SettingPropertyBool(displayName: "Disable effect on lords", HintText = "Enable this option to get lords work like in vanilla (they'll be weaker than you)", RequireRestart = false)]
+        public bool disable_lords { get; set; } = false;
+        [SettingPropertyGroup("Additional", order: 6)]
+        [SettingPropertyBool(displayName: "Disable effect on troops", HintText = "Enable this option to get troops work like in vanilla (they'll be weaker than you)", RequireRestart = false)]
+        public bool disnable_troops { get; set; } = false;
     }
 }
