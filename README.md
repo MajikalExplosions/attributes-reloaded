@@ -21,7 +21,7 @@ This mods aims to add more sense to Attributes (Vigor, Control, Endurance, Cunni
 
 ## TODO:
 - [ ] Adjust learning rate numbers in UI so it reflects effect of INT attribute
-- [ ] Show explanation for party size in party screen
+- [x] ~~Show explanation for party size in party screen~~
 - [ ] Improve algorithm for assigning base attributes for regular troops (now it's linear and considers only highest skill level)
 - [ ] Add API for translations
 - [ ] Support [Summarize Cashflow](https://www.nexusmods.com/mountandblade2bannerlord/mods/505)
