@@ -1,4 +1,4 @@
-﻿using SandBox;
+using SandBox;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -27,7 +27,7 @@ namespace AttributesReloaded
 					? bonuses.MeleeDamageMultiplier
 					: bonuses.RangeDamageMultiplier;
 				var bonusDamage = (int)(__result * damageMultiplier);
-				if (atacker.HeroObject == Hero.MainHero && Config.Instance.enable_messages)
+				if (atacker.IsPlayerCharacter && Config.Instance.enable_messages)
 				{
 					InformationManager.DisplayMessage(new InformationMessage("Bonus " + bonusDamage + " damage from " + (isMelee ? "VIG" : "CON"), Colors.Red));
 				}

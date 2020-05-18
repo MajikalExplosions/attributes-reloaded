@@ -1,4 +1,4 @@
-﻿
+
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using HarmonyLib;
@@ -15,7 +15,7 @@ namespace AttributesReloaded
 		{
 			var bonuses = new CharacterAttributeBonuses(hero.CharacterObject);
 			var bonus = __result * bonuses.XPMultiplier;
-			if (hero == Hero.MainHero && Config.Instance.enable_messages)
+			if (hero.CharacterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 			{
 				InformationManager.DisplayMessage(new InformationMessage("Bonus " + (100 * bonus) + "% XP from INT", Colors.Red));
 			}

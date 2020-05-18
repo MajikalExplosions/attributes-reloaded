@@ -19,7 +19,7 @@ namespace AttributesReloaded
 			{
 				var characterObject = CharacterObject.Find(agent.Character.StringId);
 				var heroBonuses = new CharacterAttributeBonuses(characterObject);
-				if (characterObject.HeroObject == Hero.MainHero && Config.Instance.enable_messages)
+				if (characterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 				{
 					InformationManager.DisplayMessage(new InformationMessage("Bonus " + heroBonuses.MoveSpeedMultiplier.ToString("P") + " movement speed from END", Colors.Red));
 				}
@@ -41,7 +41,7 @@ namespace AttributesReloaded
 				float speedMultiplier = isRanged
 					? heroBonuses.RangeSpeedMultiplier
 					: heroBonuses.MeleeSpeedMultiplier;
-				if (characterObject.HeroObject == Hero.MainHero && Config.Instance.enable_messages)
+				if (characterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 				{
 					InformationManager.DisplayMessage(new InformationMessage("Bonus " + (100 * speedMultiplier) + "% Attack Speed from " + (isRanged ? "CON" : "VIG"), Colors.Red));
 				}

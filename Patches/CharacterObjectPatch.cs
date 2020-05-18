@@ -35,7 +35,7 @@ namespace AttributesReloaded
         {
             var bonuses = new CharacterAttributeBonuses(__instance);
             var bonusHP = (int)(__result * bonuses.HPMultiplier);
-            if (__instance.HeroObject == Hero.MainHero && Config.Instance.enable_messages)
+            if (__instance.IsPlayerCharacter && Config.Instance.enable_messages)
             {
                 InformationManager.DisplayMessage(new InformationMessage("Bonus " + bonusHP + " HP from END", Colors.Red));
             }
