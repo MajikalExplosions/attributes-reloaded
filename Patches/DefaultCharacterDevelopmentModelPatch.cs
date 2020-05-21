@@ -17,11 +17,11 @@ namespace AttributesReloaded
 			var bonus = __result * bonuses.XPMultiplier;
             if (explainer != null)
             {
-                explainer.AddLine("INT bonus", bonus);
+                explainer.AddLine("INT bonus", bonus); // TODO: Why this stuff doesn't work?
             }
 			if (hero.CharacterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 			{
-				InformationManager.DisplayMessage(new InformationMessage("Bonus " + (100 * bonus) + "% XP from INT", Colors.Red));
+				InformationManager.DisplayMessage(new InformationMessage("Bonus " + bonus.ToString("P") + " XP from INT", Colors.Red));
 			}
 			return __result + bonus;
 		}

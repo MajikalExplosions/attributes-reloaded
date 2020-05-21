@@ -21,10 +21,10 @@ namespace AttributesReloaded
 				var characterBonuses = new CharacterAttributeBonuses(characterObject);
 				if (characterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 				{
-					InformationManager.DisplayMessage(new InformationMessage("Bonus " + characterBonuses.MoveSpeedMultiplier.ToString("P") + " movement speed from END", Colors.Red));
+					InformationManager.DisplayMessage(new InformationMessage("Bonus " + characterBonuses.MoveSpeedMultiplier.ToString("P") + " Movement Speed from END", Colors.Red));
 				}
 
-               agentDrivenProperties.CombatMaxSpeedMultiplier *= characterBonuses.MoveSpeedMultiplier + 1;
+               agentDrivenProperties.CombatMaxSpeedMultiplier *= 1 + characterBonuses.MoveSpeedMultiplier;
 			}
 		}
 
@@ -43,11 +43,11 @@ namespace AttributesReloaded
 					: characterBonuses.MeleeSpeedMultiplier;
 				if (characterObject.IsPlayerCharacter && Config.Instance.enable_messages)
 				{
-					InformationManager.DisplayMessage(new InformationMessage("Bonus " + (100 * speedMultiplier) + "% Attack Speed from " + (isRanged ? "CON" : "VIG"), Colors.Red));
+					InformationManager.DisplayMessage(new InformationMessage("Bonus " + speedMultiplier.ToString("P") + " Attack Speed from " + (isRanged ? "CON" : "VIG"), Colors.Red));
 				}
-				agentDrivenProperties.ThrustOrRangedReadySpeedMultiplier *= (1 + speedMultiplier);
-				agentDrivenProperties.ReloadSpeed *= (1 + speedMultiplier);
-				agentDrivenProperties.SwingSpeedMultiplier *= (1 + speedMultiplier);
+				agentDrivenProperties.ThrustOrRangedReadySpeedMultiplier *= 1 + speedMultiplier;
+				agentDrivenProperties.ReloadSpeed *= 1 + speedMultiplier;
+				agentDrivenProperties.SwingSpeedMultiplier *= 1 + speedMultiplier;
 			}
 		}
 	}
