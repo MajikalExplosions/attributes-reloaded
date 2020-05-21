@@ -3,6 +3,7 @@ using TaleWorlds.Localization;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using HarmonyLib;
 using System.Linq;
+using System;
 
 namespace AttributesReloaded
 {
@@ -22,7 +23,7 @@ namespace AttributesReloaded
                     .Select(companion =>
                         new CharacterAttributeBonuses(companion.CharacterObject).IncomeMultiplier)
                     .Sum();
-                goldChange.AddFactor(companionBonus, new TextObject("Additional income for Companions' INT"));
+                goldChange.AddFactor(Math.Round(companionBonus), new TextObject("Additional income for Companions' INT"));
             }
         }
         [HarmonyPostfix]
@@ -42,7 +43,7 @@ namespace AttributesReloaded
                 companionBonus = companionBonus < maxDecreas
                     ? companionBonus
                     : maxDecreas;
-                goldChange.AddFactor(companionBonus, new TextObject("Decreasing expenses for Companions' INT"));
+                goldChange.AddFactor(Math.Round(companionBonus), new TextObject("Decreasing expenses for Companions' INT"));
             }
         }
     }
