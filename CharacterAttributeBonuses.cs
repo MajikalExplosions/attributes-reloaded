@@ -130,7 +130,7 @@ namespace AttributesReloaded
             get
             {
                 if (this.character.IsPlayerCharacter) return true;
-                if (!this.character.IsHero && this.config.disnable_troops) return false;
+                if (!this.character.IsHero && this.config.disable_troops) return false;
                 if (this.character.IsHero)
                 {
                     if (this.character.HeroObject.IsPlayerCompanion && this.config.disable_companions) return false;
