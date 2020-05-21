@@ -34,13 +34,8 @@ namespace AttributesReloaded
         public static int MaxHitPoints(int __result, CharacterObject __instance)
         {
             var bonuses = new CharacterAttributeBonuses(__instance);
-            var bonusHP = (int)(__result * bonuses.HPMultiplier);
-            if (__instance.IsPlayerCharacter && Config.Instance.enable_messages)
-            {
-                InformationManager.DisplayMessage(new InformationMessage("Bonus " + bonusHP + " HP from END", Colors.Red));
-            }
 
-            return __result + bonusHP;
+            return (int)(__result * (1 + bonuses.HPMultiplier));
         }
 
         [HarmonyPatch("MaxHitpointsExplanation", MethodType.Getter)]
