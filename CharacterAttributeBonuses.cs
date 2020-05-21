@@ -113,7 +113,7 @@ namespace AttributesReloaded
         {
             get
             {
-                var result = this.config.bonus_economy * this.intelligence * this.AttributeEffectMultiplier;
+                var result = this.config.bonus_decreas * this.intelligence * this.AttributeEffectMultiplier;
                 result = - (result < 1
                     ? result
                     : 1);

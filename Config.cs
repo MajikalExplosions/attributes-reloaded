@@ -52,7 +52,7 @@ namespace AttributesReloaded
         
         [SettingPropertyGroup("Intelligence", order: 5)]
         [SettingPropertyFloatingInteger(displayName: "Bonus XP", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", HintText = "How much more XP you get for each Intelligence point", RequireRestart = false)]
-        public float bonus_xp { get; set; } = 0.1f;
+        public float bonus_xp { get; set; } = 0.05f;
         
         [SettingPropertyGroup("Intelligence", order: 5)]
         [SettingPropertyFloatingInteger(displayName: "Increase Income", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", HintText = "How much more gold you get for each Intelligence point", RequireRestart = false)]
@@ -60,7 +60,14 @@ namespace AttributesReloaded
 
         [SettingPropertyGroup("Intelligence", order: 5)]
         [SettingPropertyFloatingInteger(displayName: "Decrease Expenses", minValue: 0f, maxValue: 0.1f, valueFormat: "#0.0%", HintText = "How much less gold you spent for each Intelligence point", RequireRestart = false)]
-        public float bonus_economy { get; set; } = 0.01f;
+        public float bonus_decreas { get; set; } = 0.01f;
+        [SettingPropertyGroup("Intelligence", order: 5)]
+        [SettingPropertyBool(displayName: "Include finance bonuses from Companions", HintText = "Enable this to get bonuses for increasing income and decreased expenses from all companion", RequireRestart = false)]
+        public bool bonus_finance_from_all_heroes { get; set; } = true;
+
+        [SettingPropertyGroup("Intelligence", order: 5)]
+        [SettingPropertyFloatingInteger(displayName: "Decrease Expenses Maximum", minValue: 0f, maxValue: 0.1f, valueFormat: "#0.0%", HintText = "It's a maximum value for decreasing Expenses", RequireRestart = false)]
+        public float max_bonus_decreas { get; set; } = 0.75f;
 
         [SettingPropertyGroup("Additional", order: 6)]
         [SettingPropertyBool(displayName: "Show info messages", HintText = "Enable this to see how much bonuses you get from attributes", RequireRestart = false)]
