@@ -31,7 +31,7 @@ namespace AttributesReloaded
                         ? "Increases range damage by " + bonuses.RangeDamageMultiplier.ToString("P") + "\n"
                         : "";
                     text += bonuses.RangeSpeedMultiplier > 0
-                        ? "Increases range atack speed by " + bonuses.RangeSpeedMultiplier.ToString("P") + "\n"
+                        ? "Increases range attack speed by " + bonuses.RangeSpeedMultiplier.ToString("P") + "\n"
                         : "";
                     break;
                 case CharacterAttributesEnum.Endurance:
@@ -63,7 +63,7 @@ namespace AttributesReloaded
                         ? "Increases clan income by " + bonuses.IncomeMultiplier.ToString("P") + "\n"
                         : "";
                     text += bonuses.ExpensesMultiplier < 0
-                        ? "Decrease clan spendings by " + (- bonuses.ExpensesMultiplier).ToString("P") + "\n"
+                        ? "Decreases clan spendings by " + (- bonuses.ExpensesMultiplier).ToString("P") + "\n"
                         : "";
                     break;
             }
