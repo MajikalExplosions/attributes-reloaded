@@ -75,8 +75,10 @@
   </ItemGroup>
   <!-- Files & Classes -->
   <ItemGroup>
+    <Compile Include="Logger.cs" />
     <Compile Include="Patches\CharacterAttributeItemVMPatch.cs" />
     <Compile Include="Patches\CharacterVMPatch.cs" />
+    <Compile Include="Patches\DefaultPartyMoraleModelPatch.cs" />
     <Compile Include="Patches\SandboxAgentApplyDamageModelPatch.cs" />
     <Compile Include="Patches\DefaultPartySizeLimitModelPatch.cs" />
     <Compile Include="Patches\DefaultPersuasionModelPatch.cs" />

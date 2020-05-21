@@ -13,11 +13,11 @@ namespace AttributesReloaded
 		public static int Postfix(int __result, PartyBase party, StatExplainer explanation = null)
 		{
 			int bonus = 0;
-			if (party.LeaderHero == null) return __result;
+			if (party.Leader == null) return __result;
 			// if we take all party members into account to calculate bonus, then we don't need to take leader additionally
 			if (!Config.Instance.party_size_from_all_heroes)
 			{
-				var leaderBonuses = new CharacterAttributeBonuses(party.LeaderHero.CharacterObject);
+				var leaderBonuses = new CharacterAttributeBonuses(party.Leader);
 				bonus += (int)(__result * leaderBonuses.PartySizeMultiplier);
                 if (explanation != null) explanation.AddLine("Leader's SOC", bonus);
 			}

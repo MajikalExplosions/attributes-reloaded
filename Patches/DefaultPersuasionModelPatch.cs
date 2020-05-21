@@ -1,4 +1,4 @@
-﻿using TaleWorlds.CampaignSystem;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Conversation.Persuasion;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 using HarmonyLib;
@@ -15,10 +15,7 @@ namespace AttributesReloaded
 		{
 			var bonuses = new CharacterAttributeBonuses(Hero.MainHero.CharacterObject);
 			float attrBonus = bonuses.PersuadeAddition;
-			if (Config.Instance.enable_messages)
-			{
-				InformationManager.DisplayMessage(new InformationMessage(("Bonus " + attrBonus + "% persuation chance from SOC"), Colors.Red));
-			}
+            Logger.Log("Bonus " + attrBonus + "% persuation chance from SOC");
 			successChance += attrBonus;
 			if (successChance > 1)
 			{

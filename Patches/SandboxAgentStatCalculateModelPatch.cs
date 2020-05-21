@@ -19,12 +19,8 @@ namespace AttributesReloaded
 			{
 				var characterObject = CharacterObject.Find(agent.Character.StringId);
 				var characterBonuses = new CharacterAttributeBonuses(characterObject);
-				if (characterObject.IsPlayerCharacter && Config.Instance.enable_messages)
-				{
-					InformationManager.DisplayMessage(new InformationMessage("Bonus " + characterBonuses.MoveSpeedMultiplier.ToString("P") + " Movement Speed from END", Colors.Red));
-				}
-
-               agentDrivenProperties.CombatMaxSpeedMultiplier *= 1 + characterBonuses.MoveSpeedMultiplier;
+                Logger.Log("Bonus " + characterBonuses.MoveSpeedMultiplier.ToString("P") + " Movement Speed from END", characterObject);
+                agentDrivenProperties.CombatMaxSpeedMultiplier *= 1 + characterBonuses.MoveSpeedMultiplier;
 			}
 		}
 
@@ -41,10 +37,7 @@ namespace AttributesReloaded
 				float speedMultiplier = isRanged
 					? characterBonuses.RangeSpeedMultiplier
 					: characterBonuses.MeleeSpeedMultiplier;
-				if (characterObject.IsPlayerCharacter && Config.Instance.enable_messages)
-				{
-					InformationManager.DisplayMessage(new InformationMessage("Bonus " + speedMultiplier.ToString("P") + " Attack Speed from " + (isRanged ? "CON" : "VIG"), Colors.Red));
-				}
+                Logger.Log("Bonus " + speedMultiplier.ToString("P") + " Attack Speed from " + (isRanged ? "CON" : "VIG"), characterObject);
 				agentDrivenProperties.ThrustOrRangedReadySpeedMultiplier *= 1 + speedMultiplier;
 				agentDrivenProperties.ReloadSpeed *= 1 + speedMultiplier;
 				agentDrivenProperties.SwingSpeedMultiplier *= 1 + speedMultiplier;

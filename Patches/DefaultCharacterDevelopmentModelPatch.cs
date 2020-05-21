@@ -19,10 +19,7 @@ namespace AttributesReloaded
             {
                 explainer.AddLine("INT bonus", bonus); // TODO: Why this stuff doesn't work?
             }
-			if (hero.CharacterObject.IsPlayerCharacter && Config.Instance.enable_messages)
-			{
-				InformationManager.DisplayMessage(new InformationMessage("Bonus " + bonus.ToString("P") + " XP from INT", Colors.Red));
-			}
+            Logger.Log("Bonus " + bonus.ToString("P") + " XP from INT", hero.CharacterObject);
 			return __result + bonus;
 		}
 	}

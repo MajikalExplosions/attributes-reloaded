@@ -16,8 +16,10 @@ namespace AttributesReloaded
         public float AttributeEffectMultiplier => 1 + clenBonus(config.attribute_effects, cunning);
         public float MeleeDamageMultiplier => bonus(config.melee_bonus_dmg, vigor);
         public float MeleeSpeedMultiplier => bonus(config.melee_bonus_speed, vigor);
+        public float PositiveMoraleMultiplier => bonus(config.bonus_positive_morale, vigor);
         public float RangeDamageMultiplier => bonus(config.rng_bonus_dmg, control);
         public float RangeSpeedMultiplier => bonus(config.rng_bonus_speed, control);
+        public float NegativeMoraleMultiplier => -Math.Min(bonus(config.bonus_negative_morale, control), config.max_bonus_negative_morale);
         public float HPMultiplier => bonus(config.bonus_hp, endurance);
         public float MoveSpeedMultiplier => bonus(config.bonus_movespeed, endurance);
         public float PartySizeMultiplier => bonus(config.bonus_partysize, social);

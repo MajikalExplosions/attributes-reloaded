@@ -18,6 +18,10 @@ namespace AttributesReloaded
         [SettingPropertyFloatingInteger("Bonus Melee Speed", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", Order = 1, HintText = "How much faster you are in melee for each Vigor point", RequireRestart = false)]
         public float melee_bonus_speed { get; set; } = 0;
 
+        [SettingPropertyGroup("Vigor", order: 0)]
+        [SettingPropertyFloatingInteger("Increase Positive Morale", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", Order = 2, HintText = "How much more morale you get on positive events for each Vigor point", RequireRestart = false)]
+        public float bonus_positive_morale { get; set; } = 0.05f;
+
         [SettingPropertyGroup("Control", order: 1)]
         [SettingPropertyFloatingInteger("Bonus Range Damage", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", Order = 0, HintText = "How much more damage you deal in range for each Control point", RequireRestart = false)]
         public float rng_bonus_dmg { get; set; } = 0;
@@ -25,7 +29,15 @@ namespace AttributesReloaded
         [SettingPropertyGroup("Control", order: 1)]
         [SettingPropertyFloatingInteger("Bonus Range Speed", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", Order = 1, HintText = "How much faster you are in range for each Control point", RequireRestart = false)]
         public float rng_bonus_speed { get; set; } = 0.025f;
-        
+
+        [SettingPropertyGroup("Control", order: 1)]
+        [SettingPropertyFloatingInteger("Decrease Negative Morale", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", Order = 2, HintText = "How much less morale you loose on negative events for each Control point", RequireRestart = false)]
+        public float bonus_negative_morale { get; set; } = 0.05f;
+
+        [SettingPropertyGroup("Control", order: 1)]
+        [SettingPropertyFloatingInteger("Decrease Negative Morale Maximum", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", Order = 3, HintText = "It's a maximum value for decreasing negative morale", RequireRestart = false)]
+        public float max_bonus_negative_morale { get; set; } = 0.75f;
+
         [SettingPropertyGroup("Endurance", order: 2)]
         [SettingPropertyFloatingInteger("Bonus HP", minValue: 0f, maxValue: 1f, valueFormat: "#0.0%", Order = 0, HintText = "How much more HP you get for each Endurance point", RequireRestart = false)]
         public float bonus_hp { get; set; } = 0.025f;
@@ -97,7 +109,5 @@ namespace AttributesReloaded
         [SettingPropertyGroup("Additional", order: 7)]
         [SettingPropertyBool("Show info messages", Order = 3, HintText = "Enable this to see how much bonuses you get from attributes", RequireRestart = false)]
         public bool enable_messages { get; set; } = false;
-
-
     }
 }

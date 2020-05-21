@@ -27,10 +27,7 @@ namespace AttributesReloaded
 					? bonuses.MeleeDamageMultiplier
 					: bonuses.RangeDamageMultiplier;
 				var bonusDamage = (int)(__result * damageMultiplier);
-				if (atacker.IsPlayerCharacter && Config.Instance.enable_messages)
-				{
-					InformationManager.DisplayMessage(new InformationMessage("Bonus " + bonusDamage + " damage from " + (isMelee ? "VIG" : "CON"), Colors.Red));
-				}
+                Logger.Log("Bonus " + bonusDamage + " damage from " + (isMelee ? "VIG" : "CON"), atacker);
 				__result += bonusDamage;
 			}
 			return __result;

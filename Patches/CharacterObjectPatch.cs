@@ -10,8 +10,8 @@ namespace AttributesReloaded
     [HarmonyPatch(typeof(CharacterObject))]
     class CharacterObjectPatch
     {
-        [HarmonyPatch("GetAttributeValue")]
         [HarmonyPostfix]
+        [HarmonyPatch("GetAttributeValue")]
         public static int GetAttributeValue(int __result, CharacterObject __instance, CharacterAttributesEnum charAttribute)
         {
             var attribute = __result;
@@ -29,8 +29,8 @@ namespace AttributesReloaded
                 : 10;
         }
 
-        [HarmonyPatch("MaxHitPoints")]
         [HarmonyPostfix]
+        [HarmonyPatch("MaxHitPoints")]
         public static int MaxHitPoints(int __result, CharacterObject __instance)
         {
             var bonuses = new CharacterAttributeBonuses(__instance);
@@ -38,8 +38,8 @@ namespace AttributesReloaded
             return (int)(__result * (1 + bonuses.HPMultiplier));
         }
 
-        [HarmonyPatch("MaxHitpointsExplanation", MethodType.Getter)]
         [HarmonyPostfix]
+        [HarmonyPatch("MaxHitpointsExplanation", MethodType.Getter)]
         public static StatExplainer MaxHitpointsExplanation(StatExplainer __result, CharacterObject __instance)
         {
             var bonuses = new CharacterAttributeBonuses(__instance);
